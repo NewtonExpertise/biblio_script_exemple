@@ -77,12 +77,6 @@ class Outil_Excel():
 
 
 
-
-
-
-
-
-
 if __name__ == '__main__':
     from Query_releve_compte_contact import Query_all_client_for_relance, get_ecritures_non_lettrees
 

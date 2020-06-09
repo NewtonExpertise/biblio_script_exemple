@@ -167,6 +167,32 @@ def pivotTable():
 
 
 
+    def select_data_table():
+
+        ws = xw.sheets.active # récupère la feuilles excel active
+        used_range_rows = (ws.api.UsedRange.Row, ws.api.UsedRange.Row + ws.api.UsedRange.Rows.Count -1)
+        used_range_rows = (ws.api.UsedRange.Row, ws.api.UsedRange.Row + ws.api.UsedRange.Rows.Count -1) # définition de la position du tableau en fonction de la première ligne de données
+        used_range_cols = (ws.api.UsedRange.Column, ws.api.UsedRange.Column + ws.api.UsedRange.Columns.Count -1) # définition de la position du tableau en fonction de la première colonne de données
+        # utilisation de la zip fonction pour créer deux itérables 
+        # le premier contiendra la position de la première cellule de la ligne et de la colonne
+        # le deuxième contiendra la position de la dernière cellule de la ligne et de la colonne
+        table_position = zip(used_range_rows, used_range_cols) 
+        # Permettant ainsi de sélectionner le tableau
+        used_range = xw.Range(*table_position)
+        used_range.select()
+        data = used_range.value
+
+    def messagebox():
+        import win32api
+        import win32con
+        import xlwings as xw
+
+        win32api.MessageBox(
+        xw.apps.active.api.Hwnd, 'Hello world!', 'Info',
+        win32con.MB_ICONINFORMATION)
+
+
 
 if __name__ == "__main__":
     print(derniere_ligne())
+    print(instance_excel)
